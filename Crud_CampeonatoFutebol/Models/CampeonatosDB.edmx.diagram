@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6c3d0de3c8046c0a155bd779acdc809" Name="Diagram1">
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Campeonato" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Estadio" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Estado" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Jogador" Width="1.5" PointX="8.25" PointY="7.75" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.PosicaoJogador" Width="1.5" PointX="6" PointY="1.625" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Tecnico" Width="1.5" PointX="5.25" PointY="12.5" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Time" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.TimeCampeonato" Width="1.5" PointX="5.25" PointY="8.25" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.TipoEvento" Width="1.5" PointX="8.25" PointY="4.875" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Transferencias" Width="1.5" PointX="10.5" PointY="11" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_TimeCampeonato_Campeonato" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Estadio_Estado" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Time_Estado" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Jogador_PosicaoJogador" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Jogador_Time" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Transferencias_Jogador" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Tecnico_ToTime" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_TimeCampeonato_Time" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Transferencias_TimeDestino" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Transferencias_TimeOrigem" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.EventoPartida" Width="1.5" PointX="12.75" PointY="5.375" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_EventoPartida_Jogador" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_EventoPartida_TipoEvento" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.ResultadoPartida" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="CampeonatoFutebolModel.Partida" Width="1.5" PointX="10.5" PointY="4.125" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Partida_Estadio" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_EventoPartida_Partida" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Partida_ResultadoPartida" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Partida_TimeCampeonato1" />
+        <AssociationConnector Association="CampeonatoFutebolModel.FK_Partida_TimeCampeonato2" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

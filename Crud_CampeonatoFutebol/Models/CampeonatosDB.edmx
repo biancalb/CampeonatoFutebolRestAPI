@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CampeonatoFutebolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Campeonato">
+          <Key>
+            <PropertyRef Name="CampeonatoId" />
+          </Key>
+          <Property Name="CampeonatoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estadio">
+          <Key>
+            <PropertyRef Name="EstadioId" />
+          </Key>
+          <Property Name="EstadioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Capacidade" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EstadoId" Type="int" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="EstadoId" />
+          </Key>
+          <Property Name="EstadoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" />
+          <Property Name="UF" Type="varchar" MaxLength="2" />
+          <Property Name="IBGE" Type="int" />
+          <Property Name="Pais" Type="int" />
+        </EntityType>
+        <EntityType Name="EventoPartida">
+          <Key>
+            <PropertyRef Name="EventoPartidaId" />
+          </Key>
+          <Property Name="EventoPartidaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartidaId" Type="int" Nullable="false" />
+          <Property Name="TipoEventoId" Type="int" Nullable="false" />
+          <Property Name="InstanteEvento" Type="datetime" Nullable="false" />
+          <Property Name="JogadorId" Type="int" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jogador">
+          <Key>
+            <PropertyRef Name="JogadorId" />
+          </Key>
+          <Property Name="JogadorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataNascimento" Type="datetime" Nullable="false" />
+          <Property Name="TimeAtualID" Type="int" Nullable="false" />
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MesesContrato" Type="int" />
+          <Property Name="PosicaoJogadorId" Type="int" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="PartidaId" />
+          </Key>
+          <Property Name="PartidaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeCampeonato1Id" Type="int" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Nullable="false" />
+          <Property Name="ResultadoPartidaId" Type="int" />
+          <Property Name="EstadioId" Type="int" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="TimeCampeonato2Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosicaoJogador">
+          <Key>
+            <PropertyRef Name="PosicaoJogadorId" />
+          </Key>
+          <Property Name="PosicaoJogadorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResultadoPartida">
+          <Key>
+            <PropertyRef Name="ResultadoPartidaId" />
+          </Key>
+          <Property Name="ResultadoPartidaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Tecnico">
+          <Key>
+            <PropertyRef Name="TecnicoId" />
+          </Key>
+          <Property Name="TecnicoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataNascimento" Type="date" Nullable="false" />
+          <Property Name="TimeAtualId" Type="int" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="TimeId" />
+          </Key>
+          <Property Name="TimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EstadoId" Type="int" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeCampeonato">
+          <Key>
+            <PropertyRef Name="TimeCampeonatoId" />
+          </Key>
+          <Property Name="TimeCampeonatoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampeonatoId" Type="int" Nullable="false" />
+          <Property Name="TimeId" Type="int" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEvento">
+          <Key>
+            <PropertyRef Name="TipoEventoId" />
+          </Key>
+          <Property Name="TipoEventoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeEvento" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Transferencias">
+          <Key>
+            <PropertyRef Name="TransferenciasId" />
+          </Key>
+          <Property Name="TransferenciasId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JogadorId" Type="int" Nullable="false" />
+          <Property Name="TimeOrigemId" Type="int" Nullable="false" />
+          <Property Name="TImeDestinoId" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Estadio_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+          <End Role="Estadio" Type="Self.Estadio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Estadio">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoPartida_Jogador">
+          <End Role="Jogador" Type="Self.Jogador" Multiplicity="0..1" />
+          <End Role="EventoPartida" Type="Self.EventoPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="JogadorId" />
+            </Principal>
+            <Dependent Role="EventoPartida">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoPartida_Partida">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+          <End Role="EventoPartida" Type="Self.EventoPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="PartidaId" />
+            </Principal>
+            <Dependent Role="EventoPartida">
+              <PropertyRef Name="PartidaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoPartida_TipoEvento">
+          <End Role="TipoEvento" Type="Self.TipoEvento" Multiplicity="1" />
+          <End Role="EventoPartida" Type="Self.EventoPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvento">
+              <PropertyRef Name="TipoEventoId" />
+            </Principal>
+            <Dependent Role="EventoPartida">
+              <PropertyRef Name="TipoEventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jogador_PosicaoJogador">
+          <End Role="PosicaoJogador" Type="Self.PosicaoJogador" Multiplicity="0..1" />
+          <End Role="Jogador" Type="Self.Jogador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosicaoJogador">
+              <PropertyRef Name="PosicaoJogadorId" />
+            </Principal>
+            <Dependent Role="Jogador">
+              <PropertyRef Name="PosicaoJogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jogador_Time">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Jogador" Type="Self.Jogador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Jogador">
+              <PropertyRef Name="TimeAtualID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_Estadio">
+          <End Role="Estadio" Type="Self.Estadio" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estadio">
+              <PropertyRef Name="EstadioId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="EstadioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_ResultadoPartida">
+          <End Role="ResultadoPartida" Type="Self.ResultadoPartida" Multiplicity="0..1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResultadoPartida">
+              <PropertyRef Name="ResultadoPartidaId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="ResultadoPartidaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_TimeCampeonato1">
+          <End Role="TimeCampeonato" Type="Self.TimeCampeonato" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeCampeonato">
+              <PropertyRef Name="TimeCampeonatoId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="TimeCampeonato1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_TimeCampeonato2">
+          <End Role="TimeCampeonato" Type="Self.TimeCampeonato" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeCampeonato">
+              <PropertyRef Name="TimeCampeonatoId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="TimeCampeonato2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnico_ToTime">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Tecnico" Type="Self.Tecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Tecnico">
+              <PropertyRef Name="TimeAtualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+          <End Role="Time" Type="Self.Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeCampeonato_Campeonato">
+          <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="1" />
+          <End Role="TimeCampeonato" Type="Self.TimeCampeonato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campeonato">
+              <PropertyRef Name="CampeonatoId" />
+            </Principal>
+            <Dependent Role="TimeCampeonato">
+              <PropertyRef Name="CampeonatoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeCampeonato_Time">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="TimeCampeonato" Type="Self.TimeCampeonato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="TimeCampeonato">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transferencias_Jogador">
+          <End Role="Jogador" Type="Self.Jogador" Multiplicity="1" />
+          <End Role="Transferencias" Type="Self.Transferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="JogadorId" />
+            </Principal>
+            <Dependent Role="Transferencias">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transferencias_TimeDestino">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Transferencias" Type="Self.Transferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Transferencias">
+              <PropertyRef Name="TImeDestinoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transferencias_TimeOrigem">
+          <End Role="Time" Type="Self.Time" Multiplicity="1" />
+          <End Role="Transferencias" Type="Self.Transferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Transferencias">
+              <PropertyRef Name="TimeOrigemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CampeonatoFutebolModelStoreContainer">
+          <EntitySet Name="Campeonato" EntityType="Self.Campeonato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estadio" EntityType="Self.Estadio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventoPartida" EntityType="Self.EventoPartida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jogador" EntityType="Self.Jogador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosicaoJogador" EntityType="Self.PosicaoJogador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResultadoPartida" EntityType="Self.ResultadoPartida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tecnico" EntityType="Self.Tecnico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Time" EntityType="Self.Time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeCampeonato" EntityType="Self.TimeCampeonato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transferencias" EntityType="Self.Transferencias" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Estadio_Estado" Association="Self.FK_Estadio_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Estadio" EntitySet="Estadio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoPartida_Jogador" Association="Self.FK_EventoPartida_Jogador">
+            <End Role="Jogador" EntitySet="Jogador" />
+            <End Role="EventoPartida" EntitySet="EventoPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoPartida_Partida" Association="Self.FK_EventoPartida_Partida">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="EventoPartida" EntitySet="EventoPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoPartida_TipoEvento" Association="Self.FK_EventoPartida_TipoEvento">
+            <End Role="TipoEvento" EntitySet="TipoEvento" />
+            <End Role="EventoPartida" EntitySet="EventoPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jogador_PosicaoJogador" Association="Self.FK_Jogador_PosicaoJogador">
+            <End Role="PosicaoJogador" EntitySet="PosicaoJogador" />
+            <End Role="Jogador" EntitySet="Jogador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jogador_Time" Association="Self.FK_Jogador_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Jogador" EntitySet="Jogador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_Estadio" Association="Self.FK_Partida_Estadio">
+            <End Role="Estadio" EntitySet="Estadio" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_ResultadoPartida" Association="Self.FK_Partida_ResultadoPartida">
+            <End Role="ResultadoPartida" EntitySet="ResultadoPartida" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_TimeCampeonato1" Association="Self.FK_Partida_TimeCampeonato1">
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_TimeCampeonato2" Association="Self.FK_Partida_TimeCampeonato2">
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnico_ToTime" Association="Self.FK_Tecnico_ToTime">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Tecnico" EntitySet="Tecnico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_Estado" Association="Self.FK_Time_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Time" EntitySet="Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeCampeonato_Campeonato" Association="Self.FK_TimeCampeonato_Campeonato">
+            <End Role="Campeonato" EntitySet="Campeonato" />
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeCampeonato_Time" Association="Self.FK_TimeCampeonato_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transferencias_Jogador" Association="Self.FK_Transferencias_Jogador">
+            <End Role="Jogador" EntitySet="Jogador" />
+            <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transferencias_TimeDestino" Association="Self.FK_Transferencias_TimeDestino">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transferencias_TimeOrigem" Association="Self.FK_Transferencias_TimeOrigem">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CampeonatoFutebolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CampeonatoFutebolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campeonato" EntityType="CampeonatoFutebolModel.Campeonato" />
+          <EntitySet Name="Estadio" EntityType="CampeonatoFutebolModel.Estadio" />
+          <EntitySet Name="Estado" EntityType="CampeonatoFutebolModel.Estado" />
+          <EntitySet Name="Jogador" EntityType="CampeonatoFutebolModel.Jogador" />
+          <EntitySet Name="PosicaoJogador" EntityType="CampeonatoFutebolModel.PosicaoJogador" />
+          <EntitySet Name="Tecnico" EntityType="CampeonatoFutebolModel.Tecnico" />
+          <EntitySet Name="Time" EntityType="CampeonatoFutebolModel.Time" />
+          <EntitySet Name="TimeCampeonato" EntityType="CampeonatoFutebolModel.TimeCampeonato" />
+          <EntitySet Name="TipoEvento" EntityType="CampeonatoFutebolModel.TipoEvento" />
+          <EntitySet Name="Transferencias" EntityType="CampeonatoFutebolModel.Transferencias" />
+          <AssociationSet Name="FK_TimeCampeonato_Campeonato" Association="CampeonatoFutebolModel.FK_TimeCampeonato_Campeonato">
+            <End Role="Campeonato" EntitySet="Campeonato" />
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estadio_Estado" Association="CampeonatoFutebolModel.FK_Estadio_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Estadio" EntitySet="Estadio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_Estado" Association="CampeonatoFutebolModel.FK_Time_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Time" EntitySet="Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jogador_PosicaoJogador" Association="CampeonatoFutebolModel.FK_Jogador_PosicaoJogador">
+            <End Role="PosicaoJogador" EntitySet="PosicaoJogador" />
+            <End Role="Jogador" EntitySet="Jogador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jogador_Time" Association="CampeonatoFutebolModel.FK_Jogador_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Jogador" EntitySet="Jogador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transferencias_Jogador" Association="CampeonatoFutebolModel.FK_Transferencias_Jogador">
+            <End Role="Jogador" EntitySet="Jogador" />
+            <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tecnico_ToTime" Association="CampeonatoFutebolModel.FK_Tecnico_ToTime">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Tecnico" EntitySet="Tecnico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeCampeonato_Time" Association="CampeonatoFutebolModel.FK_TimeCampeonato_Time">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transferencias_TimeDestino" Association="CampeonatoFutebolModel.FK_Transferencias_TimeDestino">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transferencias_TimeOrigem" Association="CampeonatoFutebolModel.FK_Transferencias_TimeOrigem">
+            <End Role="Time" EntitySet="Time" />
+            <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+          <EntitySet Name="EventoPartida" EntityType="CampeonatoFutebolModel.EventoPartida" />
+          <AssociationSet Name="FK_EventoPartida_Jogador" Association="CampeonatoFutebolModel.FK_EventoPartida_Jogador">
+            <End Role="Jogador" EntitySet="Jogador" />
+            <End Role="EventoPartida" EntitySet="EventoPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoPartida_TipoEvento" Association="CampeonatoFutebolModel.FK_EventoPartida_TipoEvento">
+            <End Role="TipoEvento" EntitySet="TipoEvento" />
+            <End Role="EventoPartida" EntitySet="EventoPartida" />
+          </AssociationSet>
+          <EntitySet Name="ResultadoPartida" EntityType="CampeonatoFutebolModel.ResultadoPartida" />
+          <EntitySet Name="Partida" EntityType="CampeonatoFutebolModel.Partida" />
+          <AssociationSet Name="FK_Partida_Estadio" Association="CampeonatoFutebolModel.FK_Partida_Estadio">
+            <End Role="Estadio" EntitySet="Estadio" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoPartida_Partida" Association="CampeonatoFutebolModel.FK_EventoPartida_Partida">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="EventoPartida" EntitySet="EventoPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_ResultadoPartida" Association="CampeonatoFutebolModel.FK_Partida_ResultadoPartida">
+            <End Role="ResultadoPartida" EntitySet="ResultadoPartida" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_TimeCampeonato1" Association="CampeonatoFutebolModel.FK_Partida_TimeCampeonato1">
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partida_TimeCampeonato2" Association="CampeonatoFutebolModel.FK_Partida_TimeCampeonato2">
+            <End Role="TimeCampeonato" EntitySet="TimeCampeonato" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Campeonato">
+          <Key>
+            <PropertyRef Name="CampeonatoId" />
+          </Key>
+          <Property Name="CampeonatoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="DataInicio" Type="DateTime" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TimeCampeonato" Relationship="CampeonatoFutebolModel.FK_TimeCampeonato_Campeonato" FromRole="Campeonato" ToRole="TimeCampeonato" />
+        </EntityType>
+        <EntityType Name="Estadio">
+          <Key>
+            <PropertyRef Name="EstadioId" />
+          </Key>
+          <Property Name="EstadioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Capacidade" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="EstadoId" Type="Int32" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Estado" Relationship="CampeonatoFutebolModel.FK_Estadio_Estado" FromRole="Estadio" ToRole="Estado" />
+          <NavigationProperty Name="Partida" Relationship="CampeonatoFutebolModel.FK_Partida_Estadio" FromRole="Estadio" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="EstadoId" />
+          </Key>
+          <Property Name="EstadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="IBGE" Type="Int32" />
+          <Property Name="Pais" Type="Int32" />
+          <NavigationProperty Name="Estadio" Relationship="CampeonatoFutebolModel.FK_Estadio_Estado" FromRole="Estado" ToRole="Estadio" />
+          <NavigationProperty Name="Time" Relationship="CampeonatoFutebolModel.FK_Time_Estado" FromRole="Estado" ToRole="Time" />
+        </EntityType>
+        <EntityType Name="Jogador">
+          <Key>
+            <PropertyRef Name="JogadorId" />
+          </Key>
+          <Property Name="JogadorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeAtualID" Type="Int32" Nullable="false" />
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MesesContrato" Type="Int32" />
+          <Property Name="PosicaoJogadorId" Type="Int32" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PosicaoJogador" Relationship="CampeonatoFutebolModel.FK_Jogador_PosicaoJogador" FromRole="Jogador" ToRole="PosicaoJogador" />
+          <NavigationProperty Name="Time" Relationship="CampeonatoFutebolModel.FK_Jogador_Time" FromRole="Jogador" ToRole="Time" />
+          <NavigationProperty Name="Transferencias" Relationship="CampeonatoFutebolModel.FK_Transferencias_Jogador" FromRole="Jogador" ToRole="Transferencias" />
+          <NavigationProperty Name="EventoPartida" Relationship="CampeonatoFutebolModel.FK_EventoPartida_Jogador" FromRole="Jogador" ToRole="EventoPartida" />
+        </EntityType>
+        <EntityType Name="PosicaoJogador">
+          <Key>
+            <PropertyRef Name="PosicaoJogadorId" />
+          </Key>
+          <Property Name="PosicaoJogadorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Jogador" Relationship="CampeonatoFutebolModel.FK_Jogador_PosicaoJogador" FromRole="PosicaoJogador" ToRole="Jogador" />
+        </EntityType>
+        <EntityType Name="Tecnico">
+          <Key>
+            <PropertyRef Name="TecnicoId" />
+          </Key>
+          <Property Name="TecnicoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeAtualId" Type="Int32" Nullable="false" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Time" Relationship="CampeonatoFutebolModel.FK_Tecnico_ToTime" FromRole="Tecnico" ToRole="Time" />
+        </EntityType>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="TimeId" />
+          </Key>
+          <Property Name="TimeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoId" Type="Int32" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Estado" Relationship="CampeonatoFutebolModel.FK_Time_Estado" FromRole="Time" ToRole="Estado" />
+          <NavigationProperty Name="Jogador" Relationship="CampeonatoFutebolModel.FK_Jogador_Time" FromRole="Time" ToRole="Jogador" />
+          <NavigationProperty Name="Tecnico" Relationship="CampeonatoFutebolModel.FK_Tecnico_ToTime" FromRole="Time" ToRole="Tecnico" />
+          <NavigationProperty Name="TimeCampeonato" Relationship="CampeonatoFutebolModel.FK_TimeCampeonato_Time" FromRole="Time" ToRole="TimeCampeonato" />
+          <NavigationProperty Name="Transferencias" Relationship="CampeonatoFutebolModel.FK_Transferencias_TimeDestino" FromRole="Time" ToRole="Transferencias" />
+          <NavigationProperty Name="Transferencias1" Relationship="CampeonatoFutebolModel.FK_Transferencias_TimeOrigem" FromRole="Time" ToRole="Transferencias" />
+        </EntityType>
+        <EntityType Name="TimeCampeonato">
+          <Key>
+            <PropertyRef Name="TimeCampeonatoId" />
+          </Key>
+          <Property Name="TimeCampeonatoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampeonatoId" Type="Int32" Nullable="false" />
+          <Property Name="TimeId" Type="Int32" Nullable="false" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Campeonato" Relationship="CampeonatoFutebolModel.FK_TimeCampeonato_Campeonato" FromRole="TimeCampeonato" ToRole="Campeonato" />
+          <NavigationProperty Name="Time" Relationship="CampeonatoFutebolModel.FK_TimeCampeonato_Time" FromRole="TimeCampeonato" ToRole="Time" />
+          <NavigationProperty Name="Partida" Relationship="CampeonatoFutebolModel.FK_Partida_TimeCampeonato1" FromRole="TimeCampeonato" ToRole="Partida" />
+          <NavigationProperty Name="Partida1" Relationship="CampeonatoFutebolModel.FK_Partida_TimeCampeonato2" FromRole="TimeCampeonato" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="TipoEvento">
+          <Key>
+            <PropertyRef Name="TipoEventoId" />
+          </Key>
+          <Property Name="TipoEventoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeEvento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EventoPartida" Relationship="CampeonatoFutebolModel.FK_EventoPartida_TipoEvento" FromRole="TipoEvento" ToRole="EventoPartida" />
+        </EntityType>
+        <EntityType Name="Transferencias">
+          <Key>
+            <PropertyRef Name="TransferenciasId" />
+          </Key>
+          <Property Name="TransferenciasId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JogadorId" Type="Int32" Nullable="false" />
+          <Property Name="TimeOrigemId" Type="Int32" Nullable="false" />
+          <Property Name="TImeDestinoId" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Jogador" Relationship="CampeonatoFutebolModel.FK_Transferencias_Jogador" FromRole="Transferencias" ToRole="Jogador" />
+          <NavigationProperty Name="Time" Relationship="CampeonatoFutebolModel.FK_Transferencias_TimeDestino" FromRole="Transferencias" ToRole="Time" />
+          <NavigationProperty Name="Time1" Relationship="CampeonatoFutebolModel.FK_Transferencias_TimeOrigem" FromRole="Transferencias" ToRole="Time" />
+        </EntityType>
+        <Association Name="FK_TimeCampeonato_Campeonato">
+          <End Type="CampeonatoFutebolModel.Campeonato" Role="Campeonato" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.TimeCampeonato" Role="TimeCampeonato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campeonato">
+              <PropertyRef Name="CampeonatoId" />
+            </Principal>
+            <Dependent Role="TimeCampeonato">
+              <PropertyRef Name="CampeonatoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estadio_Estado">
+          <End Type="CampeonatoFutebolModel.Estado" Role="Estado" Multiplicity="0..1" />
+          <End Type="CampeonatoFutebolModel.Estadio" Role="Estadio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Estadio">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_Estado">
+          <End Type="CampeonatoFutebolModel.Estado" Role="Estado" Multiplicity="0..1" />
+          <End Type="CampeonatoFutebolModel.Time" Role="Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jogador_PosicaoJogador">
+          <End Type="CampeonatoFutebolModel.PosicaoJogador" Role="PosicaoJogador" Multiplicity="0..1" />
+          <End Type="CampeonatoFutebolModel.Jogador" Role="Jogador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosicaoJogador">
+              <PropertyRef Name="PosicaoJogadorId" />
+            </Principal>
+            <Dependent Role="Jogador">
+              <PropertyRef Name="PosicaoJogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jogador_Time">
+          <End Type="CampeonatoFutebolModel.Time" Role="Time" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Jogador" Role="Jogador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Jogador">
+              <PropertyRef Name="TimeAtualID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transferencias_Jogador">
+          <End Type="CampeonatoFutebolModel.Jogador" Role="Jogador" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Transferencias" Role="Transferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="JogadorId" />
+            </Principal>
+            <Dependent Role="Transferencias">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tecnico_ToTime">
+          <End Type="CampeonatoFutebolModel.Time" Role="Time" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Tecnico" Role="Tecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Tecnico">
+              <PropertyRef Name="TimeAtualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeCampeonato_Time">
+          <End Type="CampeonatoFutebolModel.Time" Role="Time" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.TimeCampeonato" Role="TimeCampeonato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="TimeCampeonato">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transferencias_TimeDestino">
+          <End Type="CampeonatoFutebolModel.Time" Role="Time" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Transferencias" Role="Transferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Transferencias">
+              <PropertyRef Name="TImeDestinoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transferencias_TimeOrigem">
+          <End Type="CampeonatoFutebolModel.Time" Role="Time" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Transferencias" Role="Transferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Transferencias">
+              <PropertyRef Name="TimeOrigemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EventoPartida">
+          <Key>
+            <PropertyRef Name="EventoPartidaId" />
+          </Key>
+          <Property Name="EventoPartidaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartidaId" Type="Int32" Nullable="false" />
+          <Property Name="TipoEventoId" Type="Int32" Nullable="false" />
+          <Property Name="InstanteEvento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JogadorId" Type="Int32" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Jogador" Relationship="CampeonatoFutebolModel.FK_EventoPartida_Jogador" FromRole="EventoPartida" ToRole="Jogador" />
+          <NavigationProperty Name="TipoEvento" Relationship="CampeonatoFutebolModel.FK_EventoPartida_TipoEvento" FromRole="EventoPartida" ToRole="TipoEvento" />
+          <NavigationProperty Name="Partida" Relationship="CampeonatoFutebolModel.FK_EventoPartida_Partida" FromRole="EventoPartida" ToRole="Partida" />
+        </EntityType>
+        <Association Name="FK_EventoPartida_Jogador">
+          <End Type="CampeonatoFutebolModel.Jogador" Role="Jogador" Multiplicity="0..1" />
+          <End Type="CampeonatoFutebolModel.EventoPartida" Role="EventoPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="JogadorId" />
+            </Principal>
+            <Dependent Role="EventoPartida">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoPartida_TipoEvento">
+          <End Type="CampeonatoFutebolModel.TipoEvento" Role="TipoEvento" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.EventoPartida" Role="EventoPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvento">
+              <PropertyRef Name="TipoEventoId" />
+            </Principal>
+            <Dependent Role="EventoPartida">
+              <PropertyRef Name="TipoEventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ResultadoPartida">
+          <Key>
+            <PropertyRef Name="ResultadoPartidaId" />
+          </Key>
+          <Property Name="ResultadoPartidaId" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Partida" Relationship="CampeonatoFutebolModel.FK_Partida_ResultadoPartida" FromRole="ResultadoPartida" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="PartidaId" />
+          </Key>
+          <Property Name="PartidaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeCampeonato1Id" Type="Int32" Nullable="false" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResultadoPartidaId" Type="Int32" />
+          <Property Name="EstadioId" Type="Int32" Nullable="false" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeCampeonato2Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estadio" Relationship="CampeonatoFutebolModel.FK_Partida_Estadio" FromRole="Partida" ToRole="Estadio" />
+          <NavigationProperty Name="EventoPartida" Relationship="CampeonatoFutebolModel.FK_EventoPartida_Partida" FromRole="Partida" ToRole="EventoPartida" />
+          <NavigationProperty Name="ResultadoPartida" Relationship="CampeonatoFutebolModel.FK_Partida_ResultadoPartida" FromRole="Partida" ToRole="ResultadoPartida" />
+          <NavigationProperty Name="TimeCampeonato" Relationship="CampeonatoFutebolModel.FK_Partida_TimeCampeonato1" FromRole="Partida" ToRole="TimeCampeonato" />
+          <NavigationProperty Name="TimeCampeonato1" Relationship="CampeonatoFutebolModel.FK_Partida_TimeCampeonato2" FromRole="Partida" ToRole="TimeCampeonato" />
+        </EntityType>
+        <Association Name="FK_Partida_Estadio">
+          <End Type="CampeonatoFutebolModel.Estadio" Role="Estadio" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estadio">
+              <PropertyRef Name="EstadioId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="EstadioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoPartida_Partida">
+          <End Type="CampeonatoFutebolModel.Partida" Role="Partida" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.EventoPartida" Role="EventoPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="PartidaId" />
+            </Principal>
+            <Dependent Role="EventoPartida">
+              <PropertyRef Name="PartidaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_ResultadoPartida">
+          <End Type="CampeonatoFutebolModel.ResultadoPartida" Role="ResultadoPartida" Multiplicity="0..1" />
+          <End Type="CampeonatoFutebolModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResultadoPartida">
+              <PropertyRef Name="ResultadoPartidaId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="ResultadoPartidaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_TimeCampeonato1">
+          <End Type="CampeonatoFutebolModel.TimeCampeonato" Role="TimeCampeonato" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeCampeonato">
+              <PropertyRef Name="TimeCampeonatoId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="TimeCampeonato1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partida_TimeCampeonato2">
+          <End Type="CampeonatoFutebolModel.TimeCampeonato" Role="TimeCampeonato" Multiplicity="1" />
+          <End Type="CampeonatoFutebolModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeCampeonato">
+              <PropertyRef Name="TimeCampeonatoId" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="TimeCampeonato2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CampeonatoFutebolModelStoreContainer" CdmEntityContainer="CampeonatoFutebolEntities">
+          <EntitySetMapping Name="Campeonato">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Campeonato">
+              <MappingFragment StoreEntitySet="Campeonato">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="CampeonatoId" ColumnName="CampeonatoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadio">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Estadio">
+              <MappingFragment StoreEntitySet="Estadio">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="Capacidade" ColumnName="Capacidade" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="EstadioId" ColumnName="EstadioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="IBGE" ColumnName="IBGE" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jogador">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Jogador">
+              <MappingFragment StoreEntitySet="Jogador">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="PosicaoJogadorId" ColumnName="PosicaoJogadorId" />
+                <ScalarProperty Name="MesesContrato" ColumnName="MesesContrato" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="TimeAtualID" ColumnName="TimeAtualID" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosicaoJogador">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.PosicaoJogador">
+              <MappingFragment StoreEntitySet="PosicaoJogador">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="PosicaoJogadorId" ColumnName="PosicaoJogadorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tecnico">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Tecnico">
+              <MappingFragment StoreEntitySet="Tecnico">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="TimeAtualId" ColumnName="TimeAtualId" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="TecnicoId" ColumnName="TecnicoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Time">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Time">
+              <MappingFragment StoreEntitySet="Time">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeCampeonato">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.TimeCampeonato">
+              <MappingFragment StoreEntitySet="TimeCampeonato">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+                <ScalarProperty Name="CampeonatoId" ColumnName="CampeonatoId" />
+                <ScalarProperty Name="TimeCampeonatoId" ColumnName="TimeCampeonatoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEvento">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.TipoEvento">
+              <MappingFragment StoreEntitySet="TipoEvento">
+                <ScalarProperty Name="NomeEvento" ColumnName="NomeEvento" />
+                <ScalarProperty Name="TipoEventoId" ColumnName="TipoEventoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transferencias">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Transferencias">
+              <MappingFragment StoreEntitySet="Transferencias">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="TImeDestinoId" ColumnName="TImeDestinoId" />
+                <ScalarProperty Name="TimeOrigemId" ColumnName="TimeOrigemId" />
+                <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+                <ScalarProperty Name="TransferenciasId" ColumnName="TransferenciasId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventoPartida">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.EventoPartida">
+              <MappingFragment StoreEntitySet="EventoPartida">
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+                <ScalarProperty Name="InstanteEvento" ColumnName="InstanteEvento" />
+                <ScalarProperty Name="TipoEventoId" ColumnName="TipoEventoId" />
+                <ScalarProperty Name="PartidaId" ColumnName="PartidaId" />
+                <ScalarProperty Name="EventoPartidaId" ColumnName="EventoPartidaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResultadoPartida">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.ResultadoPartida">
+              <MappingFragment StoreEntitySet="ResultadoPartida">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="ResultadoPartidaId" ColumnName="ResultadoPartidaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partida">
+            <EntityTypeMapping TypeName="CampeonatoFutebolModel.Partida">
+              <MappingFragment StoreEntitySet="Partida">
+                <ScalarProperty Name="TimeCampeonato2Id" ColumnName="TimeCampeonato2Id" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="EstadioId" ColumnName="EstadioId" />
+                <ScalarProperty Name="ResultadoPartidaId" ColumnName="ResultadoPartidaId" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="TimeCampeonato1Id" ColumnName="TimeCampeonato1Id" />
+                <ScalarProperty Name="PartidaId" ColumnName="PartidaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
