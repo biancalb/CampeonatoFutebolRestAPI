@@ -11,8 +11,8 @@ namespace Crud_CampeonatoFutebol.Models.Resources
         public string Nome { get; set; }
         public string DataNascimento { get; set; }
         public int TimeAtualID { get; set; }
-        public decimal Salario  { get; set; }
-        public int MesesContrato  { get; set; }
+        public decimal Salario { get; set; }
+        public int MesesContrato { get; set; }
         public int PosicaoJogadorId { get; set; }
     }
 }

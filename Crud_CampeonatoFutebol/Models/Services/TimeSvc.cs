@@ -27,7 +27,7 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<Time> List()
         {
             return db.Time.ToList();
-        }       
+        }
 
         public int Add(Time item)
         {

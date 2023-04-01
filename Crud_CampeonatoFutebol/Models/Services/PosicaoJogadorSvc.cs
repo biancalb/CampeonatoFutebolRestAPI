@@ -15,6 +15,6 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<PosicaoJogador> List()
         {
             return db.PosicaoJogador.ToList();
-        }       
+        }
     }
 }

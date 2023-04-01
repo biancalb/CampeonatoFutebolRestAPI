@@ -37,7 +37,7 @@ namespace Crud_CampeonatoFutebol.Controllers.CadastrosBasicos
             DateTime dtNascimento;
 
             if (DateTime.TryParse(body.DataNascimento, out DateTime dataNascimento)) dtNascimento = dataNascimento;
-            else throw new FormatException($"Data de Nascimento inválida"); 
+            else throw new FormatException($"Data de Nascimento inválida");
 
             var Tecnico = new Tecnico
             {

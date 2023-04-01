@@ -15,6 +15,6 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<TipoEvento> List()
         {
             return db.TipoEvento.ToList();
-        }       
+        }
     }
 }

@@ -25,8 +25,8 @@ namespace Crud_CampeonatoFutebol.Models.Services
 
         public List<Transferencias> List()
         {
-            return db.Transferencias.ToList();
-        }       
+            return db.Transferencias.OrderByDescending(x => x.DataAlteracao).ToList();
+        }
 
         public int Add(Transferencias item)
         {
