@@ -38,7 +38,7 @@ namespace Crud_CampeonatoFutebol.Controllers.CadastrosBasicos
             DateTime? dtFim;
 
             if (DateTime.TryParse(body.DataInicio, out DateTime dataInicio)) dtInicio = dataInicio;
-            else dtInicio = null;       
+            else dtInicio = null;
             if (DateTime.TryParse(body.DataFim, out DateTime dataFim)) dtFim = dataFim;
             else dtFim = null;
 
