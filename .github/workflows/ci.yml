@@ -29,17 +29,19 @@ jobs:
           
   build:
    needs: lintChecker
-   runs-on: ubuntu-latest
+   runs-on: windows-latest
 
    steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 5.0.406
-    - name: Install dependencies
-      run: dotnet restore
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1.1.1
+      
+    - name: Restore NuGet packages
+      run: nuget restore CampeonatoFutebol.sln
+
     - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: msbuild CampeonatoFutebol.sln
