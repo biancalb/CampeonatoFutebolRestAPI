@@ -65,7 +65,7 @@ namespace Crud_CampeonatoFutebol.Controllers
         public HttpResponseMessage Edit([FromUri] int id, [FromBody] PartidaModel body)
         {
             var partidaSaved = PartidaSvc.Find(id);
-            if (partidaSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(Partida)} com id = {id}");          
+            if (partidaSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(Partida)} com id = {id}");
             DateTime dt;
 
             if (DateTime.TryParse(body.DataInicio, out DateTime data)) dt = data;
