@@ -15,6 +15,6 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<ResultadoPartida> List()
         {
             return db.ResultadoPartida.ToList();
-        }       
+        }
     }
 }

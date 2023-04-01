@@ -38,7 +38,7 @@ namespace Crud_CampeonatoFutebol.Controllers.CadastrosBasicos
             DateTime dtNascimento;
 
             if (DateTime.TryParse(body.DataNascimento, out DateTime dataNascimento)) dtNascimento = dataNascimento;
-            else throw new FormatException($"Data de Nascimento inválida"); 
+            else throw new FormatException($"Data de Nascimento inválida");
 
             var jogador = new Jogador
             {
@@ -46,7 +46,7 @@ namespace Crud_CampeonatoFutebol.Controllers.CadastrosBasicos
                 DataNascimento = dtNascimento,
                 TimeAtualID = body.TimeAtualID,
                 Salario = body.Salario,
-                MesesContrato = body.MesesContrato ,
+                MesesContrato = body.MesesContrato,
                 PosicaoJogadorId = body.PosicaoJogadorId,
             };
             var result = JogadorSvc.Add(jogador);

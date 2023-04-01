@@ -43,7 +43,7 @@ namespace Crud_CampeonatoFutebol.Controllers
             var TimeCampeonato1 = TimeCampeonatoSvc.Find(body.TimeCampeonato1Id);
             var TimeCampeonato2 = TimeCampeonatoSvc.Find(body.TimeCampeonato2Id);
 
-            if(TimeCampeonato1.CampeonatoId != TimeCampeonato2.CampeonatoId) throw new ApplicationException($"Os times devem estar no mesmo campeonato");
+            if (TimeCampeonato1.CampeonatoId != TimeCampeonato2.CampeonatoId) throw new ApplicationException($"Os times devem estar no mesmo campeonato");
 
             var Partida = new Partida
             {
@@ -65,13 +65,11 @@ namespace Crud_CampeonatoFutebol.Controllers
         public HttpResponseMessage Edit([FromUri] int id, [FromBody] PartidaModel body)
         {
             var partidaSaved = PartidaSvc.Find(id);
-            if (partidaSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(Partida)} com id = {id}");
-            
+            if (partidaSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(Partida)} com id = {id}");           
             DateTime dt;
 
             if (DateTime.TryParse(body.DataInicio, out DateTime data)) dt = data;
-            else throw new FormatException($"Data de Nascimento inválida");
-            
+            else throw new FormatException($"Data de Nascimento inválida");  
             var partida = new Partida
             {
                 PartidaId = id,

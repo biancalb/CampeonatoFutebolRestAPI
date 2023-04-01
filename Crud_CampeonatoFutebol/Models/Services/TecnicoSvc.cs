@@ -14,20 +14,20 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public CampeonatoFutebolEntities db = new CampeonatoFutebolEntities();
         public Tecnico Find(long id)
         {
-             return db.Tecnico.Find(id);
+            return db.Tecnico.Find(id);
         }
 
         public List<Tecnico> Find(string nome)
         {
             var query = db.Tecnico as IQueryable<Tecnico>;
             if (!string.IsNullOrEmpty(nome)) query = query.Where(ac => ac.Nome == nome);
-            return query.ToList();          
+            return query.ToList();         
         }
 
         public List<Tecnico> List()
         {
             return db.Tecnico.ToList();
-        }       
+        }
 
         public int Add(Tecnico item)
         {

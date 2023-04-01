@@ -27,7 +27,7 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<Jogador> List()
         {
             return db.Jogador.ToList();
-        }       
+        }
 
         public int Add(Jogador item)
         {
