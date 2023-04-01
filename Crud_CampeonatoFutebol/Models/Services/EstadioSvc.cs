@@ -27,8 +27,7 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<Estadio> List()
         {
             return db.Estadio.ToList();
-        }      
-
+        }
         public int Add(Estadio item)
         {
             item.DataAlteracao = DateTime.Now;

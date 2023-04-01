@@ -26,7 +26,7 @@ namespace Crud_CampeonatoFutebol.Models.Services
         public List<EventoPartida> List()
         {
             return db.EventoPartida.ToList();
-        } 
+        }
 
         public int Add(EventoPartida item)
         {

@@ -61,7 +61,6 @@ namespace Crud_CampeonatoFutebol
 
                 var partidaId = messageSplited[1];
                 var partida = new PartidaSvc().Find(Convert.ToInt32(partidaId));
-                    
                 var tipoEventoId = messageSplited[2];
                 var tipoEventoNome = new TipoEventoSvc().Find(Convert.ToInt32(tipoEventoId)).NomeEvento;
 
