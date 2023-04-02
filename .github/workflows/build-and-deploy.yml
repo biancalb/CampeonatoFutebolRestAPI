@@ -1,0 +1,38 @@
+name: CI
+
+on: 
+  push:
+    branches: [master]
+
+jobs:
+  build:
+   name: build
+   runs-on: self-hosted
+
+   steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1.1.1
+      
+    - name: Restore NuGet packages
+      run: nuget restore CampeonatoFutebol.sln
+
+    - name: Build the solution
+      run: msbuild CampeonatoFutebol.sln /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
+           
+    - name: Publish
+      shell: pwsh
+      run: msbuild /p:DeployOnBuild=true /p:PublishProfile=IISProfile.pubxml
+      
+    - name: Deploy
+      shell: pwsh
+      run: 
+        iisreset /stop
+        xcopy /s /y ".\src\Crud_CampeonatoFutebol\obj\Release\Package\PackageTmp" "C:\www\myapp.com"
+        iisreset /stop
+   
+        
