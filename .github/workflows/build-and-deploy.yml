@@ -19,7 +19,7 @@ jobs:
       uses: NuGet/setup-nuget@v1.1.1
       
     - name: Restore NuGet packages
-      run: nuget restore Crud_CampeonatoFutebol.csproj
+      run: nuget restore CampeonatoFutebolRestAPI/CampeonatoFutebol.sln
       
     - name: Build the solution
       run: msbuild CampeonatoFutebol.sln /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
