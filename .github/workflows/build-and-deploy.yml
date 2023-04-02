@@ -19,10 +19,10 @@ jobs:
       uses: NuGet/setup-nuget@v1.1.1
       
     - name: Restore NuGet packages
-      run: nuget locals all -clear; nuget restore CampeonatoFutebol.sln
+      run: nuget locals all -clear; nuget restore .\CampeonatoFutebolRestAPI\CampeonatoFutebol.sln
       
     - name: Build the solution
-      run: msbuild CampeonatoFutebol.sln /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
+      run: msbuild .\CampeonatoFutebolRestAPI\CampeonatoFutebol.sln /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
            
     - name: Publish
       shell: pwsh
@@ -34,5 +34,3 @@ jobs:
         iisreset /stop
         xcopy /s /y ".\src\Crud_CampeonatoFutebol\obj\Release\Package\PackageTmp" "C:\www\myapp.com"
         iisreset /stop
-   
-        
