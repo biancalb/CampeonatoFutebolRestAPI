@@ -30,7 +30,8 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
-        path: ${{github.workspace}}\_build\       
+        # path: ${{github.workspace}}\_build\ 
+        path: D:\a\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\Crud_CampeonatoFutebol\obj\Release\Package
         
   deploy:
     needs: build
