@@ -45,5 +45,5 @@ jobs:
           name: my-artifact
       
       - name: Extraindo
-        shell: pwsh
         run: Expand Archive -Path 'D:\a\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\Crud_CampeonatoFutebol\obj\Release\Package\Crud_CampeonatoFutebol.zip' -DestinationPath 'C:\Users\bianc\Downloads\Temp' -Force
+        shell: pwsh
