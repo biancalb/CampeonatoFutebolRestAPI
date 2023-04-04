@@ -25,8 +25,9 @@ jobs:
       run: nuget locals all -clear; nuget restore CampeonatoFutebol.sln -PackagesDirectory packages
       
     - name: Build the solution
-      run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln -verbosity:minimal -t:rebuild -property:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeployOnBuild=true /p:PublishUrl="../_build"
-    
+      # run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln -verbosity:minimal -t:rebuild -property:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeployOnBuild=true /p:PublishUrl="../_build"
+      run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln  /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml /p:PublishUrl="../_build"
+      
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
