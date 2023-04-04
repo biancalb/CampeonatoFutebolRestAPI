@@ -50,5 +50,5 @@ jobs:
       - name: Copiando arquivos
         run: |
           iisreset /stop
-          Copy -Path 'C:\Windows\System32\actions-runner\actions-runner-win-x64-2.303.0\_work\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\PackageTmp' -Destination 'C:\www\myapp.com' -Recurse -Force -verbose
+          Copy -Path 'C:\Windows\System32\actions-runner\actions-runner-win-x64-2.303.0\_work\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\PackageTmp\*' -Destination 'C:\www\myapp.com' -Recurse -Force -verbose
           iisreset /start
