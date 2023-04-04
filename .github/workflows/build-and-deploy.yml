@@ -7,7 +7,7 @@ on:
 jobs:
   build:
    name: build
-   runs-on: windows-latest
+   runs-on: self-hosted
 
    steps:     
     - uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
         path: ${{github.workspace}}\_build\       
         
   deploy:
-    needs: Build
+    needs: build
     name: Copy WebPublish files to remote server
     runs-on: self-hosted
     
@@ -50,5 +50,5 @@ jobs:
         run: |
             $psversiontable;
             iisreset /stop
-            Copy-Item -Path ${{github.workspace}}\_build\* c:/websites/dev.${{github.event.repository.name}} -Recurse -Force
+            Copy-Item -Path ${{github.workspace}}\_build\* "C:\www\myapp.com" -Recurse -Force
             iisreset /stop
