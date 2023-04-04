@@ -19,10 +19,10 @@ jobs:
       uses: NuGet/setup-nuget@v1.1.1
       
     - name: Restore NuGet packages
-      run: nuget locals all -clear; nuget restore src\CiCdExample\CampeonatoFutebol.sln -PackagesDirectory packages
+      run: nuget locals all -clear; nuget restore src\CampeonatoFutebolRestAPI\CampeonatoFutebol.sln -PackagesDirectory packages
       
     - name: Build the solution
-      run: msbuild src\CiCdExample\CampeonatoFutebol.sln /t:Build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
+      run: msbuild src\CampeonatoFutebolRestAPI\CampeonatoFutebol.sln /t:Build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
            
     - name: Publish
       shell: pwsh
