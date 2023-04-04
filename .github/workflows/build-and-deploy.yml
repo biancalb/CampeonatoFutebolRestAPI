@@ -32,18 +32,3 @@ jobs:
       with:
         name: my-artifact
         path: ${{github.workspace}}\_build\       
-        
-  deploy:
-    needs: build
-    name: Copy WebPublish files to remote server
-    runs-on: self-hosted
-    
-    steps:
-      - name: Download artifact
-      - uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-      
-      - name: Extraindo
-        run: Expand Archive -Path 'D:\a\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\Crud_CampeonatoFutebol\obj\Release\Package\Crud_CampeonatoFutebol.zip' -DestinationPath 'C:\Users\bianc\Downloads\Temp' -Force
-        shell: pwsh
