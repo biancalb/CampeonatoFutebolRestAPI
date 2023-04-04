@@ -22,7 +22,7 @@ jobs:
       run: nuget locals all -clear; nuget restore CampeonatoFutebol.sln -PackagesDirectory packages
       
     - name: Build the solution
-      run: msbuild CampeonatoFutebol.csproj /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
+      run: msbuild "C:\Windows/System32/actions-runner/actions-runner-win-x64-2.303.0/_work/CampeonatoFutebolRestAPI/CampeonatoFutebolRestAPI/CampeonatoFutebol.csproj" /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
            
     - name: Publish
       shell: pwsh
