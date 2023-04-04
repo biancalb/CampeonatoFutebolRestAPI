@@ -47,3 +47,10 @@ jobs:
       - name: Extraindo
         run: Expand Archive -Path 'D:\a\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\Crud_CampeonatoFutebol\obj\Release\Package\Crud_CampeonatoFutebol.zip' -DestinationPath 'C:\Users\bianc\Downloads\Temp' -Force
         shell: pwsh
+        
+      - name: Copiando arquivos e puplicando
+        shell: pwsh
+        run: |
+          iisreset /stop
+          Copy -Path 'C:\Windows\System32\actions-runner\actions-runner-win-x64-2.303.0\_work\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\PackageTmp' -Destination 'C:\www\myapp.com' -Recurse -Force -verbose
+          iisreset /start
