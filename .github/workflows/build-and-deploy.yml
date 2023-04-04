@@ -26,3 +26,9 @@ jobs:
       
     - name: Build the solution
       run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln -verbosity:minimal -t:rebuild -property:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeployOnBuild=true /p:PublishUrl="../_build"
+    
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ${{github.workspace}}\_build\       
+        
