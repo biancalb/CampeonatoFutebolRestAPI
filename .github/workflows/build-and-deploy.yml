@@ -7,7 +7,7 @@ on:
 jobs:
   build:
    name: build
-   runs-on: self-hosted
+   runs-on: windows-latest
 
    steps:     
     - uses: actions/checkout@v3
@@ -27,6 +27,7 @@ jobs:
     - name: Build the solution
       run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln -verbosity:minimal -t:rebuild -property:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeployOnBuild=true /p:PublishUrl="../_build"
     
+    - name: Upload artifact    
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
@@ -38,17 +39,11 @@ jobs:
     runs-on: self-hosted
     
     steps:
-      - name: Run PowerShell Remove-Item 
-        run: Remove-Item ${{github.workspace}}\_build\ -Force -Recurse
-
-      - uses: actions/download-artifact@master
+      - name: Download artifact
+      - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: ${{github.workspace}}\_build\
-
-      - name: Run PowerShell Copy-Item
-        run: |
-            $psversiontable;
-            iisreset /stop
-            Copy-Item -Path ${{github.workspace}}\_build\* "C:\www\myapp.com" -Recurse -Force
-            iisreset /stop
+      
+      - name: Extraindo
+        shell: pwsh
+        run: Expand Archive -Path 'D:\a\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\Crud_CampeonatoFutebol\obj\Release\Package\Crud_CampeonatoFutebol.zip' -DestinationPath 'C:\Users\bianc\Downloads\Temp' -Force
