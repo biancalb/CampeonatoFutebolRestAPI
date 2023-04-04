@@ -7,7 +7,7 @@ on:
 jobs:
   build:
    name: build
-   runs-on: self-hosted
+   runs-on: windows-latest
 
    steps:     
     - uses: actions/checkout@v3
@@ -17,20 +17,38 @@ jobs:
 
     - name: Setup NuGet.exe for use with actions
       uses: NuGet/setup-nuget@v1.1.1
+    
+    - name: Create Build Directory
+      run: mkdir ${{github.workspace}}\_build\
       
     - name: Restore NuGet packages
       run: nuget locals all -clear; nuget restore CampeonatoFutebol.sln -PackagesDirectory packages
       
     - name: Build the solution
-      run: msbuild src\CampeonatoFutebol\Crud_CampeonatoFutebol\Crud_CampeonatoFutebol.csproj /t:Build /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
-           
-    - name: Publish
-      shell: pwsh
-      run: msbuild /p:DeployOnBuild=true /p:PublishProfile=IISProfile.pubxml
-      
-    - name: Deploy
-      shell: pwsh
-      run: 
-        iisreset /stop
-        xcopy /s /y ".\src\Crud_CampeonatoFutebol\obj\Release\Package\PackageTmp" "C:\www\myapp.com"
-        iisreset /stop
+      run: msbuild CampeonatoFutebol.sln -verbosity:minimal -t:rebuild -property:Configuration=Release /p:PublishProfile=IISProfile.pubxml /p:WebPublishMethod=FileSystem /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:PublishUrl="../_build"
+    
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ${{github.workspace}}\_build\       
+        
+  deploy:
+    needs: Build
+    name: Copy WebPublish files to remote server
+    runs-on: self-hosted
+    
+    steps:
+      - name: Run PowerShell Remove-Item 
+        run: Remove-Item ${{github.workspace}}\_build\ -Force -Recurse
+
+      - uses: actions/download-artifact@master
+        with:
+          name: my-artifact
+          path: ${{github.workspace}}\_build\
+
+      - name: Run PowerShell Copy-Item
+        run: |
+            $psversiontable;
+            iisreset /stop
+            Copy-Item -Path ${{github.workspace}}\_build\* c:/websites/dev.${{github.event.repository.name}} -Recurse -Force
+            iisreset /stop
