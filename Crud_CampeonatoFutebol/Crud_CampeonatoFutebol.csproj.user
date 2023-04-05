@@ -17,6 +17,7 @@
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>True</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_LayoutPageFile />
     <NameOfLastUsedPublishProfile>C:\Users\bianc\Documents\Pos\2022-1\AWS\TrabFinal\CampeonatoFutebol\Crud_CampeonatoFutebol\Properties\PublishProfiles\IISProfile.pubxml</NameOfLastUsedPublishProfile>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
