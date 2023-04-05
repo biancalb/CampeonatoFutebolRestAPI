@@ -7,7 +7,7 @@ on:
 jobs:
   build:
    name: build
-   runs-on: self-hosted
+   runs-on: windows-latest
 
    steps:     
     - uses: actions/checkout@v3
@@ -17,20 +17,39 @@ jobs:
 
     - name: Setup NuGet.exe for use with actions
       uses: NuGet/setup-nuget@v1.1.1
+    
+    - name: Create Build Directory
+      run: mkdir ${{github.workspace}}\_build\
       
     - name: Restore NuGet packages
       run: nuget locals all -clear; nuget restore CampeonatoFutebol.sln -PackagesDirectory packages
       
     - name: Build the solution
-      run: msbuild CampeonatoFutebol.sln /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml
-           
-    - name: Publish
-      shell: pwsh
-      run: msbuild /p:DeployOnBuild=true /p:PublishProfile=IISProfile.pubxml
+      run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln -verbosity:minimal -t:rebuild -property:Configuration=Release /p:WebPublishMethod=FileSystem /p:DeployOnBuild=true /p:PublishUrl="../_build"
+      # run: msbuild ${{github.workspace}}\CampeonatoFutebol.sln  /p:DeployOnBuild=true /p:Configuration=Release /P:PublishProfile=IISProfile.pubxml /p:PublishUrl="../_build"
       
-    - name: Deploy
-      shell: pwsh
-      run: 
-        iisreset /stop
-        xcopy /s /y ".\src\Crud_CampeonatoFutebol\obj\Release\Package\PackageTmp" "C:\www\myapp.com"
-        iisreset /stop
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        # path: ${{github.workspace}}\_build\ 
+        path: D:\a\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\Crud_CampeonatoFutebol\obj\Release\Package
+        
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: self-hosted
+    
+    steps:
+     # - name: Remove
+      #  run: Remove-Item 'C:\Windows\System32\actions-runner\actions-runner-win-x64-2.303.0\_work\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI' -Force -Recurse
+        
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: my-artifact
+        
+      - name: Copiando arquivos
+        run: |
+          iisreset /stop
+          Copy -Path 'C:\Windows\System32\actions-runner\actions-runner-win-x64-2.303.0\_work\CampeonatoFutebolRestAPI\CampeonatoFutebolRestAPI\PackageTmp\*' -Destination 'C:\www\myapp.com' -Recurse -Force -verbose
+          iisreset /start
