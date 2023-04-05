@@ -39,7 +39,6 @@ namespace Crud_CampeonatoFutebol.Controllers.CadastrosBasicos
 
             if (DateTime.TryParse(body.DataInicio, out DateTime dataInicio)) dtInicio = dataInicio;
             else dtInicio = null;
-            
             if (DateTime.TryParse(body.DataFim, out DateTime dataFim)) dtFim = dataFim;
             else dtFim = null;
 
@@ -62,8 +61,8 @@ namespace Crud_CampeonatoFutebol.Controllers.CadastrosBasicos
         public HttpResponseMessage Edit([FromUri] int id, [FromBody] CampeonatoModel body)
         {
             var campeonatoSaved = CampeonatoSvc.Find(id);
-            if (campeonatoSaved == null)throw new NullReferenceException($"Não foi possível encontrar {nameof(Campeonato)} com id = {id}");
-           
+            if (campeonatoSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(Campeonato)} com id = {id}");
+
             DateTime? dtInicio = null;
             DateTime? dtFim = null;
 

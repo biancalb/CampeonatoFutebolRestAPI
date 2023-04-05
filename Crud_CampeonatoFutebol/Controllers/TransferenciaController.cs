@@ -67,7 +67,7 @@ namespace Crud_TransferenciaFutebol.Controllers
         public HttpResponseMessage Edit([FromUri] int id, [FromBody] TransferenciaModel body)
         {
             var timeCampeonatoSaved = TransferenciaSvc.Find(id);
-            if (timeCampeonatoSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(TimeCampeonato)} com id = {id}");      
+            if (timeCampeonatoSaved == null) throw new NullReferenceException($"Não foi possível encontrar {nameof(TimeCampeonato)} com id = {id}");
             DateTime dt;
 
             if (DateTime.TryParse(body.Data, out DateTime data)) dt = data;

@@ -21,7 +21,7 @@ namespace Crud_CampeonatoFutebol.Models.Services
         {
             var query = db.Tecnico as IQueryable<Tecnico>;
             if (!string.IsNullOrEmpty(nome)) query = query.Where(ac => ac.Nome == nome);
-            return query.ToList();         
+            return query.ToList();
         }
 
         public List<Tecnico> List()
