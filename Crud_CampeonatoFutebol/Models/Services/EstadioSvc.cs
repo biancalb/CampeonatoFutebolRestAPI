@@ -39,11 +39,11 @@ namespace Crud_CampeonatoFutebol.Models.Services
         {
             //Validações
             var Estadio = Find(item.Nome)?.FirstOrDefault();
-            if (Estadio != null && Estadio.EstadioId != (int)item.EstadioId)
+            if(Estadio != null && Estadio.EstadioId !=   (int)item.EstadioId)
                 throw new ApplicationException("Estadio já cadastrado");
 
             item.DataAlteracao = DateTime.Now;
-            db.Entry(Estadio).State = EntityState.Modified;
+            db.Entry(Estadio).State= EntityState.Modified;
             db.Entry(Estadio).CurrentValues.SetValues(item);
             return db.SaveChanges();
         }
